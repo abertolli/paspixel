@@ -1,0 +1,19 @@
+MS Paint -> Pascal
+
+black          -> black
+white          -> white
+dark gray      -> light gray
+light gray     -> dark gray
+red            -> blue
+light red      -> light blue
+dark yellow    -> cyan
+yellow         -> light cyan
+green          -> green
+light green    -> light green
+cyan           -> brown
+light cyan     -> yellow
+blue           -> red
+light blue     -> light red
+magenta        -> magenta
+light magenta  -> light magenta
+

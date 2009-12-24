@@ -1,0 +1,41 @@
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*             XXXX       XXXX            
+*            XXXXXX     XXXXXX           
+*           XXXXXXXX   XXXXXXXX          
+*          XXXXXXXXXX XXXXXXXXXX         
+*         XXXXXXXXXXX XXXXXXXXXXX        
+*         XXXXXXXXXXXXXXXXXXXXXXX        
+*        XXXXXXXXXXXXXXXXXXXXXXXXX       
+*        XXXXXXXXXXXXXXXXXXXXXXXXX       
+*        XXXXXXXXXXXXXXXXXXXXXXXXX       
+*        XXXXXXXXXXXXXXXXXXXXXXXXX       
+*         XXXXXXXXXXXXXXXXXXXXXXX        
+*         XXXXXXXXXXXXXXXXXXXXXXX        
+*          XXXXXXXXXXXXXXXXXXXXX         
+*           XXXXXXXXXXXXXXXXXXX          
+*            XXXXXXXXXXXXXXXXX           
+*             XXXXXXXXXXXXXXX            
+*              XXXXXXXXXXXXX             
+*               XXXXXXXXXXX              
+*                XXXXXXXXX               
+*                 XXXXXXX                
+*                  XXXXX                 
+*                   XXX                  
+*                    X                   
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*                                        
+*****************************************
