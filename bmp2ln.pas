@@ -1,5 +1,4 @@
-
-program BMPtoLN1;
+program BMPtoLN;
 
 uses crt, graph;
 
