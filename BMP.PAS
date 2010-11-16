@@ -3,6 +3,8 @@
 { ----                                                              }
 { Martin Reddy, the Graphics File Formats page:                     }
 { <http://www.dcs.ed.ac.uk/~mxr/gfx                                 }
+{$MODE TP}
+{$ASMMODE INTEL}
 
 unit BMP;
 
@@ -12,7 +14,7 @@ Procedure save_bmp(x1,y1,x2,y2:integer;filename:string;bitmap:byte);
 {Bitmap is "bit4" or "bit8"}
 
 Implementation
-Uses Crt,Dos,Graph;
+Uses Crt,Dos,Graph,ports;
 
 var x,y,mk,xx1,yy1:integer;
 rgbb:palettetype;
@@ -87,6 +89,7 @@ begin
   end;
 end;
 
+
 Procedure load_bmp_16(x,y:integer; filename:string);
 var
 x1,y1:integer;
@@ -102,6 +105,7 @@ for y1:=heigh downto 1 do
         putpixel(x1+x,y1+y,pix2);
         end;
 end;
+
 
 
 procedure load_bmp_256(xx,yy :integer;filename :string);
@@ -554,4 +558,4 @@ E-Mail me and send this Port number - PLEASE!}
 {Maybe you know another way how to read current palette?
  Then E-Mail me! (Maris: e-mail at top of file)}
 end.
-   
+

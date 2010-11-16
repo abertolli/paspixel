@@ -77,7 +77,10 @@ begin
 	readln(pasfile,lineoftext);
 	if(lineoftext='FORMAT=LINE')then
 		while not eof(pasfile) do
+                begin
+                        readln(pasfile);
 			size:=size + 1;
+                end;
 	close(pasfile);
 	getlnsizey:=size;
 end;
@@ -132,9 +135,9 @@ begin
           textcolor(white);
           write('LN file (input): ');
           readln(lnfile);
-	  xsize:=getln1sizex(ln1file);
-	  ysize:=getln1sizey(ln1file);
+	  xsize:=getlnsizex(lnfile);
           writeln('x size: ',xsize);
+          ysize:=getlnsizey(lnfile);
           writeln('y size: ',ysize);
           writeln;
           write('BMP file (output): ');
@@ -145,7 +148,7 @@ begin
           ch:=readkey;
 
           DRAWPICTUREBYLINE(1,1,lnfile);
-	  save_bmp(1,1,xsize+1,ysize+1,bmpfile,'bit4');
+	  save_bmp(1,1,xsize+1,ysize+1,bmpfile,1);
 
           ch:=readkey;
           closegraph;
