@@ -2,7 +2,11 @@ program ViewPicture;
 
 {View graphics file by lines or code.}
 
-uses crt, graph;
+{$ifdef Win32}
+{$apptype GUI}
+{$endif}
+
+uses windows, wincrt, graph;
 
 const
      lmargin        =    10;
@@ -30,6 +34,22 @@ var
      mode           :    integer;
      thefile        :    stringtype;
 
+{--------------------------------------------------------------------------}
+function exists(dosname:string) : boolean;
+
+{Returns TRUE if the file exists.}
+
+var
+     pasfile        :   text;
+
+begin
+     {$I-}
+     assign(pasfile,dosname);
+     reset(pasfile);
+     close(pasfile);
+     {$I+}
+     exists:=(IoResult=0);
+end;
 {---------------------------------------------------------------------------}
 procedure GPROMPT;
 
@@ -54,9 +74,13 @@ var
      error          :    integer;
 
 begin
-     clrscr;
-     repeat
-          gdriver:=detect;
+	repeat
+		gdriver:=detect;
+		{$ifdef Win32}
+		gdriver:=D4bit;
+		gmode:=m800x600;
+		ShowWindow(GetActiveWindow,0);
+		{$endif}
           initgraph(gdriver,gmode,gpath);
           error:=graphresult;
           if(error<>grOK)then
@@ -524,35 +548,40 @@ var
      firstline      :    stringtype;
 
 begin
-     cleardevice;
-     assign(pasfile,dosname);
-     reset(pasfile);
-     readln(pasfile,firstline);
-     close(pasfile);
-     if (firstline='FORMAT=CODE') then
-          drawpicturebycode(1,1,dosname)
-     else
-          if (firstline='FORMAT=LINE') then
-               drawpicturebyline(1,1,dosname)
-          else
-               begin
-                    x:=20;
-                    y:=20;
-                    gwrite(x,y,'Cannot view that file...');
-               end;
-     gprompt;
+
+	if (exists(dosname)) then
+		begin
+		cleardevice;
+		assign(pasfile,dosname);
+		reset(pasfile);
+		readln(pasfile,firstline);
+		close(pasfile);
+		if (firstline='FORMAT=CODE') then
+			drawpicturebycode(1,1,dosname)
+		else
+			if (firstline='FORMAT=LINE') then
+				drawpicturebyline(1,1,dosname)
+			else
+				gwriteln(x,y,'Unknown format');
+		end
+	else
+		gwriteln(x,y,'No such file.');
+	gprompt;
 
 end;
 {---------------------------------------------------------------------------}
 
 
 begin
-     gfilesloc(device,mode,'c:\tp\bgi');
-     cleardevice;
-     homecursor(x,y);
-     settextstyle(default,horizontal,2);
-     gwrite(x,y,'Enter file name:  ');
-     gread(x,y,thefile);
-     view(thefile);
-     closegraph;
+	gfilesloc(device,mode,'c:\tp\bgi');
+	repeat
+		cleardevice;
+		homecursor(x,y);
+		settextstyle(default,horizontal,2);
+		gwrite(x,y,'Enter file name:  ');
+		gread(x,y,thefile);
+		gwriteln(x,y,'');
+		view(thefile);
+	until (False);
+	closegraph;
 end.
