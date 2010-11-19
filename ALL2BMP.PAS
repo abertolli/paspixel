@@ -1,6 +1,6 @@
 program LNtoBMP;
 
-uses bmp, crt, graph;
+uses bmp, crt, graph, dos;
 
 var
      device    :     integer;
@@ -11,6 +11,7 @@ var
      xsize     :     integer;
      ysize     :     integer;
      lineoftext:     string[80];
+     dir        : searchrec;
 
 {--------------------------------------------------------------------------}
 procedure graph_init(var gdriver,gmode:integer;gpath:string);
@@ -131,25 +132,19 @@ end;
 {--------------------------------------------------------------------------}
 
 begin
-          clrscr;
-          textcolor(white);
-          write('LN file (input): ');
-          readln(lnfile);
-	  xsize:=getlnsizex(lnfile);
-          writeln('x size: ',xsize);
-          ysize:=getlnsizey(lnfile);
-          writeln('y size: ',ysize);
-          writeln;
-          write('BMP file (output): ');
-          readln(bmpfile);
-          writeln;
-
-          graph_init(device,mode,'c:\tp7\bgi');
-          ch:=readkey;
-
-          DRAWPICTUREBYLINE(1,1,lnfile);
-	  save_bmp(1,1,xsize+1,ysize+1,bmpfile,1);
-
-          ch:=readkey;
-          closegraph;
+        findfirst('*.ln1',0,dir);
+        while (doserror=0) do
+        begin
+                lnfile:=dir.name;
+                bmpfile:='OUT\'+copy(lnfile,1,pos('.',lnfile))+'BMP';
+                xsize:=getlnsizex(lnfile);
+                ysize:=getlnsizey(lnfile);
+                graph_init(device,mode,'c:\tp\bgi');
+                cleardevice;
+                DRAWPICTUREBYLINE(1,1,lnfile);
+	        save_bmp(1,1,xsize,ysize,bmpfile,1);
+                closegraph;
+                findnext(dir);
+        end;
+        findclose(dir);
 end.
